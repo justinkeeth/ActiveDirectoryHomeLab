@@ -2,7 +2,7 @@
 
 
 <h2>Description</h2>
-Project consists of setting up Virtual Home Lab on Windows Server 2019 (or 2022) to run Active Directory and then use a Powershell script to create a bulk list of users to assign to the Active Directory. (I have uploaded the files needed to run the powershell script and a bulk list of names to assign to the users that we create on this lab. The files are attached to this repository, you will want to download onto the virtual server that is created.)
+Project consists of setting up Virtual Home Lab on Windows Server 2019 (or 2022) to run Active Directory and then use a Powershell script to create a bulk list of users to assign to the Active Directory. (I have uploaded the files needed to run the powershell script and a bulk list of names to assign to the users that we create on this lab. The files are attached to this repository, you will want to download onto the virtual server that is created).
 <br />
 
 
