@@ -23,7 +23,7 @@ Project consists of setting up Virtual Home Lab on Windows Server 2019 (or 2022)
 
 
 <div align="center"><h2>Network Diagram For Project:</h2><br/>
-<img width="1271" height="764" alt="NICdiagram" src="https://github.com/user-attachments/assets/9622b316-d55d-474e-ab86-6459bd02ab8d" />
+<img width="636" height="382" alt="NICdiagram" src="https://github.com/user-attachments/assets/9622b316-d55d-474e-ab86-6459bd02ab8d" />
 </div>
 
 <!--
