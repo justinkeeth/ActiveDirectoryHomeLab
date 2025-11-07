@@ -25,12 +25,13 @@ Project consists of setting up Virtual Home Lab on Windows Server 2019 (or 2022)
 
 <div align="center"><p></p><h3>Network Diagram For Project:</h3><br/>
 <img width="636" height="382" alt="NICdiagram" src="https://github.com/user-attachments/assets/9622b316-d55d-474e-ab86-6459bd02ab8d" /></p>
+ <br />
+ <p><h3>VirtualBox Download preview:</h3></p>
+<img width="1073" height="266" alt="virtboxprev" src="https://github.com/user-attachments/assets/2c8e43c6-2646-454d-8c0a-8b617fb01b2c" />
 <br />
  <p><h3>VirtualBox Server Setup:</h3></p>
  <img width="1074" height="569" alt="virtualsetup" src="https://github.com/user-attachments/assets/29abe0ad-67b3-4d1e-b36f-2ced4bbb7f62" />
-<br />
- <p><h3>VirtualBox Download preview:</h3></p>
-<img width="1073" height="266" alt="virtboxprev" src="https://github.com/user-attachments/assets/2c8e43c6-2646-454d-8c0a-8b617fb01b2c" />
+
 
 
 </div>
