@@ -2,48 +2,23 @@
 
 
 <h2>Description</h2>
-Project consists of a simple PowerShell script that walks the user through "zeroing out" (wiping) any drives that are connected to the system. The utility allows you to select the target disk and choose the number of passes that are performed. The PowerShell script will configure a diskpart script file based on the user's selections and then launch Diskpart to perform the disk sanitization.
+Project consists of setting up Virtual Home Lab on Windows Server 2019 (or 2022) to run Active Directory and then use a Powershell script to create a bulk list of users to assign to the Active Directory. 
 <br />
 
 
-<h2>Languages and Utilities Used</h2>
+<h2>Software versions and Environments Used</h2>
 
-- <b>PowerShell</b> 
-- <b>Diskpart</b>
+- <b>VirtualBox by Oracle</b>
+- <b>Windows 10 or 11</b>
+- <b>Windows Server 2019 or 2022</b>
+- <b>PowerShell</b>
 
-<h2>Environments Used </h2>
 
-- <b>Windows 10</b> (21H2)
 
-<h2>Program walk-through:</h2>
+<h2>Lab walk-through:</h2>
 
-<p align="center">
-Launch the utility: <br/>
-<img src="https://i.imgur.com/62TgaWL.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Select the disk:  <br/>
-<img src="https://i.imgur.com/tcTyMUE.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Enter the number of passes: <br/>
-<img src="https://i.imgur.com/nCIbXbg.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Confirm your selection:  <br/>
-<img src="https://i.imgur.com/cdFHBiU.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Wait for process to complete (may take some time):  <br/>
-<img src="https://i.imgur.com/JL945Ga.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Sanitization complete:  <br/>
-<img src="https://i.imgur.com/K71yaM2.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
-<br />
-<br />
-Observe the wiped disk:  <br/>
-<img src="https://i.imgur.com/AeZkvFQ.png" height="80%" width="80%" alt="Disk Sanitization Steps"/>
+<p>
+ You first download and install VirtualBox by Oracle. Next step is to download an ISO file for the Windows Server 2019 or 2022 and an ISO file for Windows 10 or Windows 11. You will need available hardware to allocate memory, hard disk, and processing power from the CPU (2-4 cores for adequate processing speed) for the virtual machines to run on. While setting up the virtual machines, you will need to configure the amount of hardware to allocate, and then setup the Network Adapters, first you will setup a network for NAT so the virtual machine can access your internet connection, and the 2nd Network adapter will be for the internal domain network that is being created for the Active Directory environment.
 </p>
 
 <!--
