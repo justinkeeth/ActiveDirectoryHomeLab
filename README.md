@@ -2,19 +2,23 @@
 
 
 <h2>Description</h2>
-Project consists of setting up Virtual Home Lab on Windows Server 2022 (or 2025) to run Active Directory and then use a Powershell script to create a bulk list of users to assign to the Active Directory. (I have uploaded the files needed to run the powershell script and a bulk list of names to assign to the users that we create on this lab. The files are attached to this repository, you will want to download onto the virtual server that is created).
+Project consists of setting up Virtual Home Lab on Windows Server 2022 (or Windows Server 2025) to run Active Directory and then use a Powershell script to create a bulk list of users to assign to the Active Directory. (The script and user names txt files were uploaded and attached to this repository, you will want to download them onto the virtual server that is created. -> '1_CREATE_USERS.ps1' and 'names.txt').
 <br />
 
 
 <h2>Software versions and Environments Used</h2>
 
 - <b>VirtualBox by Oracle (version 7.2.4)</b>
-- <b>Windows 10/ Windows 11</b>
-- <b>Windows Server 2019, 2022 or 2025</b>
-- <b>PowerShell</b>
+- <b>Windows 11</b>
+- <b>Windows Server 2022 (or 2025)</b>
+- <b>Windows PowerShell</b>
 
 
+<h2>Network Diagram:
 
+<div align="center"><p></p><h3>Network Diagram For Project:</h3><br/>
+<img width="636" height="382" alt="NICdiagram" src="https://github.com/user-attachments/assets/9622b316-d55d-474e-ab86-6459bd02ab8d" /></p>
+ 
 <h2>Lab walk-through:</h2>
 
 <p>
