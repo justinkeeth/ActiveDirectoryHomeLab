@@ -17,8 +17,8 @@ Project consists of setting up Virtual Home Lab on Windows Server 2022 (or Windo
 <h2>Network Diagram:
 
 <div align="center"><p></p><h3>Network Diagram For Project:</h3><br/>
-<img width="636" height="382" alt="NICdiagram" src="https://github.com/user-attachments/assets/9622b316-d55d-474e-ab86-6459bd02ab8d" /></p>
- 
+<img width="1271" height="764" alt="blanknetw" src="https://github.com/user-attachments/assets/455cc8fc-6606-405d-9e74-cc842cedbb72" /></p>
+
 <h2>Lab walk-through:</h2>
 
 <p>
@@ -32,9 +32,8 @@ For settng up the RAS, we will go to 'add roles and features' on the server dash
 
 
 
-<div align="center"><p></p><h3>Network Diagram For Project:</h3><br/>
-<img width="636" height="382" alt="NICdiagram" src="https://github.com/user-attachments/assets/9622b316-d55d-474e-ab86-6459bd02ab8d" /></p>
- <br />
+<div align="center"><p></p><h3>Visuals of VirtualBox Setup:</h3><br/>
+
  <p><h3>VirtualBox Download preview:</h3></p>
 <img width="1073" height="266" alt="virtboxprev" src="https://github.com/user-attachments/assets/2c8e43c6-2646-454d-8c0a-8b617fb01b2c" />
 <br />
@@ -42,6 +41,11 @@ For settng up the RAS, we will go to 'add roles and features' on the server dash
  <img width="1074" height="569" alt="virtualsetup" src="https://github.com/user-attachments/assets/29abe0ad-67b3-4d1e-b36f-2ced4bbb7f62" />
 
 
+
+</div>
+
+<div align="center"><p></p><h3>Video demonstration:</h3><br/>
+[Youtube video will be embedded after upload is complete]
 
 </div>
 
