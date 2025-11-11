@@ -18,7 +18,7 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 
 <div align="center"><p></p><h3>Network Diagram For Project:</h3><br/>
 <img width="1271" height="764" alt="netw2025" src="https://github.com/user-attachments/assets/afd6a09b-82d3-4800-a93f-ad790f78d4d6" />
-
+</div>
 <h2>Lab walk-through:</h2>
 
 <p>
@@ -32,8 +32,8 @@ For settng up the RAS, we will go to 'add roles and features' on the server dash
 
 
 
-<div align="center"><p></p><h3>Visuals of VirtualBox Setup:</h3><br/>
-
+<p></p><h2>Visuals of VirtualBox Setup:</h2>
+<div align="center">
  <p><h3>VirtualBox Download preview:</h3></p>
 <img width="1073" height="266" alt="virtboxprev" src="https://github.com/user-attachments/assets/2c8e43c6-2646-454d-8c0a-8b617fb01b2c" />
 <br />
