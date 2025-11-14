@@ -17,8 +17,10 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 <h2>Network Diagram:</h2>
 
 <div align="center"><p></p><h3>Network Diagram For Project:</h3><br/>
-<img width="1271" height="764" alt="netw2025" src="https://github.com/user-attachments/assets/afd6a09b-82d3-4800-a93f-ad790f78d4d6" />
+ <img width="1250" height="754" alt="networkdiagramfinal" src="https://github.com/user-attachments/assets/7855aadd-131d-452b-ae74-b1e4972014bb" />
+
 </div>
+
 <h2>Lab walk-through:</h2>
 
 <p>
