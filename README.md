@@ -40,8 +40,7 @@ For settng up the RAS, we will go to 'add roles and features' on the server dash
 <img width="1073" height="266" alt="virtboxprev" src="https://github.com/user-attachments/assets/2c8e43c6-2646-454d-8c0a-8b617fb01b2c" />
 <br />
  <p><h3>VirtualBox Server Setup:</h3></p>
-<img width="1050" height="557" alt="Screenshot 2025-11-14 110113" src="https://github.com/user-attachments/assets/ac1f734f-2699-4d6f-a3af-f4c27af43047" />
-
+<img width="1055" height="559" alt="Screenshot 2025-11-14 110447" src="https://github.com/user-attachments/assets/19c01b91-b988-4fd2-9c11-f4dca7075a1d" />
 
 
 </div>
