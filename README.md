@@ -14,7 +14,7 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 - <b>Windows PowerShell</b>
 
 <div align="center"><p></p><h3>Video demonstration:</h3><br/>
-<a href="https://www.youtube.com/watch?v=XroVMhYW4ls" target="_blank"><img width="512" height="288" alt="networkdiagramfinal" src="https://github.com/user-attachments/assets/3bc79949-6396-43aa-88e8-02538bdac1e4" /></a>
+<a href="https://www.youtube.com/watch?v=XroVMhYW4ls" target="_blank" rel="noopener noreferrer"><img width="512" height="288" alt="networkdiagramfinal" src="https://github.com/user-attachments/assets/3bc79949-6396-43aa-88e8-02538bdac1e4" /></a>
  
 
 </div>
