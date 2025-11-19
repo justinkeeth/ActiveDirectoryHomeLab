@@ -47,7 +47,8 @@ Next, we will install our DHCP server. You will select Add roles and features on
 </div>
 
 <div align="center"><p></p><h3>Video demonstration:</h3><br/>
-[Youtube video will be embedded after upload is complete]
+<a href="https://www.youtube.com/watch?v=XroVMhYW4ls">Click here or on the image > <img width="512" height="288" alt="networkdiagramfinal" src="https://github.com/user-attachments/assets/3bc79949-6396-43aa-88e8-02538bdac1e4" /></a>
+ 
 
 </div>
 
