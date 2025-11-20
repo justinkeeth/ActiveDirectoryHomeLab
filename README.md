@@ -8,9 +8,9 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 
 <h2>Software versions and Environments Used</h2>
 
-- <b>VirtualBox by Oracle (version 7.2.4)</b>
-- <b>Windows Server 2025</b>
-- <b>Windows 11 (Pro)</b>
+- <b><a href="https://www.virtualbox.org/wiki/Downloads">VirtualBox by Oracle (version 7.2.4)</a></b>
+- <b><a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2025">Windows Server 2025</a></b>
+- <b><a href="https://www.microsoft.com/en-us/software-download/windows11">Windows 11 (Pro)</a></b>
 - <b>Windows PowerShell</b>
 
 <div align="center"><p></p><h3>Video demonstration:</h3><br/>
