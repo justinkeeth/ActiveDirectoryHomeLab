@@ -2,7 +2,7 @@
 
 
 <h2>Description</h2>
-Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Active Directory and then use a Powershell script to create a bulk list of users to assign to the Active Directory. [The script file and user names txt file were uploaded and attached to this repository, you will want to download them onto the virtual server that is created. -> ('1_CREATE_USERS.ps1' - Powershell script and 'names.txt')].
+Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Active Directory and then use a Powershell script to create a bulk list of users to assign to the Active Directory. [The script file and user names txt file were uploaded and attached to this repository, you will want to download them onto the virtual server that is created. -> ('1_CREATE_USERS.ps1' PowerShell script and 'names.txt')].
 <br />
 
 
