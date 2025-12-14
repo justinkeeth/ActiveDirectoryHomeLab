@@ -28,16 +28,281 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 <h2>Lab walk-through:</h2>
 
 <p>
- You first download and install VirtualBox by Oracle (You will need to download and install the VirtualBox Extension pack as well). Next step is to download an ISO file for the Windows Server 2025 and an ISO file for Windows 11 for the client VMs. You will need available hardware to allocate memory, hard disk, and processing power from the CPU (2-4 or more cores for adequate processing speed) for the virtual machines to run on. While setting up the virtual machine server, you will need to configure the amount of hardware to allocate to the server, and then select the ISO file for the Windows Server version you have downloaded. Before you finish configuring the virtual machine, you will need setup 2 Network Adapters, the first network adapter will be set to NAT for the virtual machine to have access your home internet connection, and the 2nd Network adapter will be for the internal domain network that is being created for the Active Directory environment. Next, you will launch the virtual machine into the OS installation for the server and complete the installation process for the operating sysem onto the VM. Note, you will need to select an option with Desktop Experience or there will not be a GUI (Graphical User Interface). You would have to manage the server from the Command Prompt and PowerShell. <br />
- After you complete the operating system installation, you will install the VM guest additions image file and then setup the IP addressing for the network adapter. You will rename the adapter that is for your NAT home network connection 'Internet' or a name you will associate with your home intetet to be able to identify which adapter it is. Next, rename the internal network adapter to 'Internal' or 'domain network'. Make sure you identify which adapter is the internal network and which is the NAT adapter by right-clicking and opening up 'Status' and then 'Details...' to determine the correct adapters by their IP address. The internal network that we created is going to have an APIPA IP address which will start with, 169.xxx.xxx.xxx. After you have renamed them appropriately, open the properties of the internal network adapter and then open the Internet Protocol Version 4 (TCP/IPv4) Properties, and input the IP address from the network diagram image below: IP: 172.16.0.1 , subnet mask: 255.255.255.0, and then leave default gateway blank because this domain controller will serve as the default gateway itself. The DNS settings need to be configured to it's own IP because the domain controller will have Active Directory, which will include automatically install DNS. You should use the loopback address as the DNS server: 127.0.0.1. Also, optional, but you can rename the PC under the system settings to something like 'Domain Controller' if you would like.<br />
-Next, we will install the Active Directory Domain Services onto the domain controller, and then create the domain, you can use 'mydomain.com' to make it simple. After the vm restarts, you will open the Active Directory Users and Computers. Go to the mydomain.com dropdown, right-click and go to New -> Organizational Unit. This first Organizational Unit will be for admins, you can name it _admins. Next, you will highlight & right-click the '_admins' OU that we created and create a new user for our administrator account. Name it and set a password for this user account. After you create this user, you will have to right-click and open properties, inside that menu, go to 'Member Of' and then click Add.. and under the object name, type Domain Admins, and press Check Names and then OK and then Apply. Now, we can sign out out of domain controller administrator account, and sign into the user account that we added to the Domain Admins group. You will have to type in the username and password that you created for that user. <br />
-Next, we will setup the Remote Access Service on the domain controller, that way we will be able to access the internet through the domain controller when we create a Windows 11 virtual client, but also remain on the private virtual network. 
-For settng up the RAS, we will go to 'add roles and features' on the server dashboard. Click next on the first 2 steps and on the server selection make sure the Domain Controller that you made is selected, click next and then select Remote Access under Features. Click next and under Role Services, you will select Routing and then Add Features, and then click next to advance past the remaining steps. Install the role and you will go to tools in the top right of server manager and select 'Routing and Remote Access'. On the left side, you will right-click your domain controller and select Configure and Enable Routing and Remote Access. Next, select NAT and advance to the next screen and under 'Use this public interface to connect to the Internet', you will select the one named Internet (NOT the internal one). <br />
-Next, we will install our DHCP server. You will select Add roles and features on the server manager again. Advance to server selection and select your domain controller and advance to Server Roles where you will select DHCP Server and then advance to installation. When this installation finishes, you will go to DHCP under Tools on the top right of the Server Manager. Now, we will be setting our DHCP scope range for IP addresses that we want to assign to our client computers and then we will install routing on our DHCP server. To set the scope, you will expand the drop-down on the left side under DHCP -> [servername].mydomain.com -> and then right-click 'IPv4' and go to 'New Scope...' to launch the Scope Wizard. In this tutorial, I am naming the Scope Name the range of the scope -> 172.16.0.100-200. Next, you will enter the starting IP Address which would be the first available IP address that the DHCP will assign and then up to the last IP address that we want to be assigned within this range. Starting IP Address: 172.16.0.100 , End IP Address: 172.16.0.200. Under the subnet mask, we will choose /24, which is 255.255.255.0. That way we will have the ability to divide our network into more sub-networks. You don't need to add any exclusions and then you will choose the lease duration which is how long the device can use that IP Address before it needs to be renewed. After half the lease time passes, the device will try to renew the lease with the DHCP server. In this lab, I decided to set it to 8 days since we have no reason to set it to a shorter time. Next, we will add our Default Gateway for the Router on the DHCP server. Our default gateway from the network diagram is 172.16.0.1. Next for DNS, we will use mydomain.com as our parent domain because when you install Active Directory onto a domain controller it automatically installs DNS so our domain controller will be our DNS server. Make sure you add the IP address for the gateway in the Domain Name and DNS Servers options. We are not using WINS Servers so you can leave that blank and advance to Activate Scope and choose Yes, I want to active this scope now and finish the setup wizard. After this, right click the domain controller on the left side drop down menu and Refresh the servers to make sure the setttings take effect. In my tutorial video, I forgot to do this next step until after I created the Client Windows 11 VM, but right now, you should configure the Router option on the DHCP server. For some reason this is not configured during the setup wizard, so you will right-click 'Server Options' under the IPv4 dropdown on the DHCP, and then select 'Configure Options...'. Select 003 Router under available options and then add the IP Address of the default gateway in the IP address box down below and press Add and then Apply. Close this screen and right-click one last time on the Domain Controller at the top of the DHCP downdown menu and refresh one last time to activate changes. <br />
-Now, our next step is going to be downloading the PowerShell script file and the names.txt file. I have the files posted on this repository -> <a href="https://www.github.com/justinkeeth/ActiveDirectoryHomeLab/">AD Repository</a>.<br />
-Save the files to your desktop or a folder that you know how to navigate to. Launch Windows PowerShell ISE as an administrator and open the 1_CREATE_USERS.ps1 file that we downloaded from the repository above. This script is going to create users and assign them to a new OU (Organizational Unit) called '_USERS' and it will input each user's name and username from the names list in our names.txt file. Since there are so many random names being created, I find it's nice to have a user account created with my own name so I can easily search for it and have a login for a standard user which differs from the admin account that I created earlier. To add your own name to the list of users being created, you will have to open the names.txt file in Notepad and on the first line add your first and last name before the other generated names start. So, this user account with our name will be the first standard user created by the script. The usernames will be made in the format of (first letter of first name + last name), so for example my name is Justin Keeth and the username that will be created for my name will be 'jkeeth'. Make sure to save the names.txt file with your name added before attempting to run the PowerShell script. Next, before we are able to run the create users script file, we have to bypass the security error that will prevent the script from being ran. To bypass this security feature, we will type the following command into the prompt at the bottom of the PowerShell ISE interface: Set-ExecutionPolicy Unrestricted (and press <enter>). It will ask if you are sure you want to change the execution policy and click 'Yes to All'. Now we will be able to run the script with no errors. When the script finishes running, you can launch Acitve Directory Users and Computers again and view all of the users that were created in the '_USERS' folder (Organizational Unit). We are now able to move onto creating the client virtual machine to run Windows 11 Pro and join it to our domain within our internal network.<br />
-We will go back into VirtualBox and create a new VM, select the Windows 11 iso and Windows 11 Pro under the edition. Skip unattended installation and select the hardward you would like to allocate for the VM, you will need to meet the Windows 11 minimum requirements. Which is 64-bit 1 GHz CPU with 2 or more cores, 4+ GB RAM, 64GB Storage, UEFI, Secure Boot, TPM 2.0. After creating the VM, you will have to edit settings on the network adapter to be on the internal network so we can join this computer to the domain on our windows server. In my demonstration video, I accidentally unchecked the cable connected checkbox on the network settings of the client Windows 11 VM, so when I initially checked the IP address after the Windows 11 installation completed, it showed under the Ethernet adapter settings that there was nothing connected on the network adapter. I had to launch the Settings for the virtual machine and realized the Cable Connected setting was unchecked, and after enabling this, I was able to connect to the internal network. Since, I did not have internet connection when installing Windows 11 on this client VM computer, I had to open the command prompt on the screen that asks you to connect to the internet and run a command to bypass the internet required setting when installing Windows 11. To launch command prompt at this window when installing windows 11, you will press Shift + F10, and then type the following command: 'OOBE \BYPASSNRO' (Bypass Network Requirement Offline) and then the installation window will relaunch and you will be able to advance through the setup without having an internet connection. After the installation completes, our next step will be to change the name of the Computer within the Windows System Settings, and then it will restart. When it finishes booting after that restart, we will then join the client Windows 11 VM to the Domain Controller on our Windows Server 2025 VM. To join this computer to the domain, you will open Windows Settings -> System -> About -> and then above Windows Specifications, you will see the option 'Domain or workgroup'. After you select 'Domain or workgroup' the System Properties menu will launch and at the bottom of the Computer Name option, you will select: 'To rename this computer or change its domain or workgroup, click Change'. Next, under Member of-> Domain: mydomain.com (or whatever you named you domain on your Windows Server). Next, you will be prompted with a login screen where you will have to enter credentials that are validated on the Windows Server and if the login is authenticated successfully, you will then be prompted with a Welcome to the "mydomain.com" domain. <br />
-The client computer has now been successfully joined to the domain that we created. Now, we can launch command prompt again and verify our IP address was handed to us by the DHCP server within the DHCP score that we created on the Windows Server DHCP settings. The IP Address for the client computer should be in the range of 172.16.0.100-172.16.0.200. After you have verified that you are properly connected to the domain and IP address was properly configured dynamically with the DHCP, you can go back into the Windows Server VM and launch Active Directory Users and Computers. Now, we can look at the Computers OU folder and see the Client1 PC is connected to our Active Directory. You can also go back to the Windows 11 Client VM and test out logging in from other users with their username and password. You can also edit policies and permissions for these users. This lab helps to simulate a professional environment to gain experience executing different processes that would be needed when creating new users and managing users on the domain for a business.
+ Part 1: Prerequisites & Downloads
+
+Download and install Oracle VirtualBox.
+
+Download and install the VirtualBox Extension Pack (must match your VirtualBox version).
+
+Download the following ISO files:
+
+Windows Server 2025
+
+Windows 11 Pro
+
+Ensure your host computer has sufficient resources:
+
+CPU: 2–4+ cores recommended
+
+RAM: At least 8 GB total (more is better)
+
+Storage: At least 100 GB free
+
+Part 2: Create the Windows Server 2025 Virtual Machine
+
+Open VirtualBox and create a new VM.
+
+Assign:
+
+Name: Windows Server 2025
+
+Type: Microsoft Windows
+
+Version: Windows Server (64-bit)
+
+Allocate hardware resources (RAM, CPU, disk).
+
+Select the Windows Server 2025 ISO.
+
+Configure Network Adapters
+
+Before finishing VM creation, configure two network adapters:
+
+Adapter 1:
+
+Attached to: NAT
+
+Purpose: Internet access
+
+Adapter 2:
+
+Attached to: Internal Network
+
+Purpose: Active Directory domain network
+
+Part 3: Install Windows Server 2025
+
+Start the VM and begin installation.
+
+Select Windows Server with Desktop Experience (GUI is required).
+
+Complete the OS installation.
+
+Log in as the local Administrator.
+
+Install VirtualBox Guest Additions and reboot if prompted.
+
+Part 4: Configure Network Settings on the Server
+Identify Network Adapters
+
+Open Network Connections.
+
+Identify each adapter by checking Status → Details.
+
+NAT adapter: Home network IP
+
+Internal adapter: APIPA address (169.x.x.x)
+
+Rename Adapters
+
+Rename NAT adapter to: Internet
+
+Rename internal adapter to: Internal or Domain Network
+
+Configure Internal Adapter IPv4
+
+Open IPv4 Properties for the Internal adapter.
+
+Configure:
+
+IP Address: 172.16.0.1
+
+Subnet Mask: 255.255.255.0
+
+Default Gateway: (leave blank)
+
+Preferred DNS Server: 127.0.0.1
+
+(Optional) Rename the server to DomainController and reboot.
+
+Part 5: Install Active Directory Domain Services (AD DS)
+
+Open Server Manager → Add Roles and Features.
+
+Select the local server.
+
+Install Active Directory Domain Services.
+
+Promote the server to a domain controller.
+
+Create a new forest:
+
+Domain name: mydomain.com
+
+Complete the wizard and reboot.
+
+Part 6: Create Admin Organizational Unit & User
+
+Open Active Directory Users and Computers.
+
+Right-click mydomain.com → New → Organizational Unit.
+
+Name the OU: _admins.
+
+Right-click _admins → New → User.
+
+Create an admin user account.
+
+Open user properties → Member Of tab.
+
+Add the user to Domain Admins.
+
+Sign out and log back in using this new domain admin account.
+
+Part 7: Configure Routing and Remote Access (NAT)
+
+Open Server Manager → Add Roles and Features.
+
+Install Remote Access.
+
+Under Role Services, select Routing.
+
+Open Tools → Routing and Remote Access.
+
+Right-click the server → Configure and Enable Routing and Remote Access.
+
+Select NAT.
+
+Choose the Internet adapter as the public interface.
+
+Part 8: Install and Configure DHCP Server
+Install DHCP
+
+Add Roles and Features → Install DHCP Server.
+
+Complete installation.
+
+Create DHCP Scope
+
+Open Tools → DHCP.
+
+Navigate to:
+
+DHCP → Server → IPv4
+
+Right-click IPv4 → New Scope.
+
+Configure:
+
+Scope Name: 172.16.0.100-200
+
+Start IP: 172.16.0.100
+
+End IP: 172.16.0.200
+
+Subnet Mask: 255.255.255.0
+
+Lease Duration: 8 days
+
+Default Gateway: 172.16.0.1
+
+DNS:
+
+Domain: mydomain.com
+
+DNS Server IP: 172.16.0.1
+
+Activate the scope.
+
+Configure Router Option
+
+Right-click Server Options → Configure Options.
+
+Enable 003 Router.
+
+Add IP: 172.16.0.1.
+
+Apply and refresh the server.
+
+Part 9: Create Users with PowerShell Script
+
+Download 1_CREATE_USERS.ps1 and names.txt from the AD repository.
+
+Save files locally.
+
+Edit names.txt and add your name at the top.
+
+Open PowerShell ISE as Administrator.
+
+Run: Set-ExecutionPolicy Unrestricted
+
+Open and run 1_CREATE_USERS.ps1.
+
+Verify users appear in the _USERS OU.
+
+Part 10: Create Windows 11 Client VM
+
+Create a new VM in VirtualBox.
+
+Select Windows 11 Pro ISO.
+
+Skip unattended installation.
+
+Allocate resources meeting Windows 11 requirements.
+
+Set network adapter to Internal Network.
+
+Windows 11 Setup (No Internet)
+
+During setup, press Shift + F10.
+
+Run:
+
+OOBE\BYPASSNRO
+
+Continue installation offline.
+
+Part 11: Join Windows 11 Client to Domain
+
+Rename the computer and reboot.
+
+Open Settings → System → About.
+
+Select Domain or workgroup → Change.
+
+Join domain: mydomain.com.
+
+Enter domain admin credentials.
+
+Reboot when prompted.
+
+Part 12: Verification & Testing
+
+Run ipconfig on the client:
+
+IP should be in 172.16.0.100–200 range.
+
+Open Active Directory Users and Computers.
+
+Verify the client appears in the Computers OU.
+
+Log into the Windows 11 client using a domain user account.
+
+Lab Outcome
+
+You now have a functional Active Directory lab with:
+
+Domain Controller
+
+NAT & internal networking
+
+DHCP-managed clients
+
+Automated user creation
+
+Domain-joined Windows 11 client
+
+This lab closely simulates a real-world enterprise environment and provides hands-on experience with core Windows Server administration tasks.
 
 </p>
 
