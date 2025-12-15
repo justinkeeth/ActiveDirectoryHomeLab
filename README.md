@@ -28,7 +28,7 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 <h2>Lab walk-through:</h2>
 
 <p>
- Part 1: Prerequisites & Downloads
+ <h3>Part 1: Prerequisites & Downloads</h3>
 
 Download and install Oracle VirtualBox.
 
@@ -40,43 +40,43 @@ Windows Server 2025
 
 Windows 11 Pro
 
-Ensure your host computer has sufficient resources:
+Ensure your host computer has sufficient resources: (You will need the following available resources to be allocated to run smoothly)
 
 CPU: 2–4+ cores recommended
 
-RAM: At least 8 GB total (more is better)
+RAM: At least 4 GB available to allocate (more is better)
 
-Storage: At least 100 GB free
+Storage: At least 50 GB free
 
-Part 2: Create the Windows Server 2025 Virtual Machine
+<h3>Part 2: Create the Windows Server 2025 Virtual Machine</h3>
 
 Open VirtualBox and create a new VM.
 
-Assign:
+Assign the following:
 
-Name: Windows Server 2025
+Name: (Your choice of what you would like to name the server VM)
+
+Iso: Select the Windows Server 2025 iso (that you downloaded)
+
+Edition: Windows Server 2025 Standard Evaluation (Desktop Experience)
 
 Type: Microsoft Windows
 
-Version: Windows Server (64-bit)
+Version: Windows Server 2025 (64-bit)
 
 Allocate hardware resources (RAM, CPU, disk).
 
-Select the Windows Server 2025 ISO.
+Make sure to check the box to select: Skip Unattended Installation
 
-Configure Network Adapters
+Configure 2 Network Adapters (1 for the internet connection that our computer is using and 1 for the internal network that we are going to create)
 
-Before finishing VM creation, configure two network adapters:
-
-Adapter 1:
-
-Attached to: NAT
+Adapter 1: Attached to: NAT
 
 Purpose: Internet access
 
 Adapter 2:
 
-Attached to: Internal Network
+Attached to: Internal Network (You can name this adapter whatever you would like)
 
 Purpose: Active Directory domain network
 
@@ -84,15 +84,15 @@ Part 3: Install Windows Server 2025
 
 Start the VM and begin installation.
 
-Select Windows Server with Desktop Experience (GUI is required).
+Select Windows Server with Desktop Experience (GUI is required, otherwise there will only be a command prompt).
 
 Complete the OS installation.
 
-Log in as the local Administrator.
+Log in as the local Administrator. (I prefer to use Password1 in my homelabs to make it easy to remember)
 
-Install VirtualBox Guest Additions and reboot if prompted.
+Install VirtualBox Guest Additions and we will manually reboot at the end of Part 4:
 
-Part 4: Configure Network Settings on the Server
+<h3>Part 4: Configure Network Settings on the Server</h3>
 Identify Network Adapters
 
 Open Network Connections.
@@ -101,15 +101,15 @@ Identify each adapter by checking Status → Details.
 
 NAT adapter: Home network IP
 
-Internal adapter: APIPA address (169.x.x.x)
+Internal adapter: This will have an APIPA address (169.254.x.x)
 
-Rename Adapters
+Rename Adapters:
 
-Rename NAT adapter to: Internet
+Rename NAT adapter to: "Internet"
 
-Rename internal adapter to: Internal or Domain Network
+Rename internal adapter to: "Internal" or "Domain Network"
 
-Configure Internal Adapter IPv4
+Configure the Internal Adapter IPv4 Properties.
 
 Open IPv4 Properties for the Internal adapter.
 
@@ -121,11 +121,11 @@ Subnet Mask: 255.255.255.0
 
 Default Gateway: (leave blank)
 
-Preferred DNS Server: 127.0.0.1
+Preferred DNS Server: 127.0.0.1 (Loopback IP address, the domain controller will serve as our DNS Server).
 
-(Optional) Rename the server to DomainController and reboot.
+Rename the server to DomainController within Windows Settings and reboot.
 
-Part 5: Install Active Directory Domain Services (AD DS)
+<h3>Part 5: Install Active Directory Domain Services (AD DS)</h3>
 
 Open Server Manager → Add Roles and Features.
 
@@ -141,7 +141,7 @@ Domain name: mydomain.com
 
 Complete the wizard and reboot.
 
-Part 6: Create Admin Organizational Unit & User
+<h3>Part 6: Create Admin Organizational Unit & User</h3>
 
 Open Active Directory Users and Computers.
 
@@ -159,7 +159,7 @@ Add the user to Domain Admins.
 
 Sign out and log back in using this new domain admin account.
 
-Part 7: Configure Routing and Remote Access (NAT)
+<h3>Part 7: Configure Routing and Remote Access (NAT)</h3>
 
 Open Server Manager → Add Roles and Features.
 
@@ -175,7 +175,7 @@ Select NAT.
 
 Choose the Internet adapter as the public interface.
 
-Part 8: Install and Configure DHCP Server
+<h3>Part 8: Install and Configure DHCP Server</h3>
 Install DHCP
 
 Add Roles and Features → Install DHCP Server.
@@ -224,7 +224,7 @@ Add IP: 172.16.0.1.
 
 Apply and refresh the server.
 
-Part 9: Create Users with PowerShell Script
+<h3>Part 9: Create Users with PowerShell Script</h3>
 
 Download 1_CREATE_USERS.ps1 and names.txt from the AD repository.
 
@@ -240,7 +240,7 @@ Open and run 1_CREATE_USERS.ps1.
 
 Verify users appear in the _USERS OU.
 
-Part 10: Create Windows 11 Client VM
+<h3>Part 10: Create Windows 11 Client VM</h3>
 
 Create a new VM in VirtualBox.
 
@@ -262,7 +262,7 @@ OOBE\BYPASSNRO
 
 Continue installation offline.
 
-Part 11: Join Windows 11 Client to Domain
+<h3>Part 11: Join Windows 11 Client to Domain</h3>
 
 Rename the computer and reboot.
 
@@ -276,7 +276,7 @@ Enter domain admin credentials.
 
 Reboot when prompted.
 
-Part 12: Verification & Testing
+<h3>Part 12: Verification & Testing</h3>
 
 Run ipconfig on the client:
 
