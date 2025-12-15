@@ -68,19 +68,13 @@ Allocate hardware resources (RAM, CPU, disk).
 
 Make sure to check the box to select: Skip Unattended Installation
 
-Configure 2 Network Adapters (1 for the internet connection that our computer is using and 1 for the internal network that we are going to create)
+Configure 2 Network Adapters (1 for the internet connection that our computer is using and 1 for the internal network that we are going to create).
 
-Adapter 1: Attached to: NAT
+Adapter 1: Attached to: NAT , Purpose: Internet access.
 
-Purpose: Internet access
+Adapter 2: Attached to: Internal Network (Name appropriately) , Purpose: Active Directory domain network.
 
-Adapter 2:
-
-Attached to: Internal Network (You can name this adapter whatever you would like)
-
-Purpose: Active Directory domain network
-
-Part 3: Install Windows Server 2025
+<h3>Part 3: Install Windows Server 2025</h3>
 
 Start the VM and begin installation.
 
