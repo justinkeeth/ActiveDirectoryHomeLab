@@ -84,7 +84,7 @@ Complete the OS installation.
 
 Log in as the local Administrator. (I prefer to use Password1 in my homelabs to make it easy to remember)
 
-Install VirtualBox Guest Additions and we will manually reboot at the end of Part 4:
+Install VirtualBox Guest Additions and we will manually reboot at the end of Part 4.
 
 <h3>Part 4: Configure Network Settings on the Server</h3>
 Identify Network Adapters
