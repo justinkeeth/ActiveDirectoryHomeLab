@@ -274,27 +274,27 @@ Reboot when prompted.
 
 Run ipconfig on the client:
 
-IP should be in 172.16.0.100–200 range.
+IPv4 Address should be in 172.16.0.100–200 range.
 
 Open Active Directory Users and Computers.
 
 Verify the client appears in the Computers OU.
 
-Log into the Windows 11 client using a domain user account.
+Log into the Windows 11 client using a domain user account (not the admin account).
 
-Lab Outcome
+<h3>Lab Outcome:</h3>
 
 You now have a functional Active Directory lab with:
 
-Domain Controller
+- Domain Controller
 
-NAT & internal networking
+- NAT & internal networking
 
-DHCP-managed clients
+- DHCP-managed clients
 
-Automated user creation
+- Automated user creation
 
-Domain-joined Windows 11 client
+- Domain-joined Windows 11 client
 
 This lab closely simulates a real-world enterprise environment and provides hands-on experience with core Windows Server administration tasks.
 
