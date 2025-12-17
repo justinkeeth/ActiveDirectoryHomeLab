@@ -30,15 +30,15 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 <p>
  <h3>Part 1: Prerequisites & Downloads</h3>
 
-Download and install Oracle VirtualBox.
+Download and install <a href="https://www.virtualbox.org/wiki/Downloads"> Oracle VirtualBox</a>.
 
-Download and install the VirtualBox Extension Pack (must match your VirtualBox version).
+Download and install the VirtualBox Extension Pack (can be found on the same page as the VirtualBox download and must match your VirtualBox version).
 
 Download the following ISO files:
 
-Windows Server 2025
+<a href="https://www.microsoft.com/en-us/evalcenter/evaluate-windows-server-2025">Windows Server 2025</a>
 
-Windows 11 Pro
+<a href="https://www.microsoft.com/en-us/software-download/windows11">Windows 11 (Pro)</a> (You cannot join a domain with Windows 11 Home).
 
 Ensure your host computer has sufficient resources: (You will need the following available resources to be allocated to run smoothly)
 
