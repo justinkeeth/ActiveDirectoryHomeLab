@@ -293,7 +293,7 @@ You now have a functional Active Directory lab with:
 - Domain-joined Windows 11 client
 
 This lab closely simulates a real-world enterprise environment and provides hands-on experience with core Windows Server administration tasks. </p>
-<p>Also, just wanted to note if you are watching the YouTube video while reading this walk-through guide, I forgot to enable the 003 Router on the DHCP server when I setup the DHCP earlier on the Server VM, so I performed this step at 33:22 time on the video. <br>
+<p>Also wanted to note, if you are watching the YouTube video while reading this walk-through guide, I forgot to enable the 003 Router on the DHCP server when I setup the DHCP earlier on the Server VM, so I performed this step at 33:22 time on the video. <br>
 I accidentally disabled the 'cable connected' checkbox on the Virtualbox settings of the Windows 11 Pro VM while the OS was installing. I had to troubleshoot why the ipconfig was showing ethernet disconnected, and solved the issue by enabling Cable Connected within the Network Adapter settings on Virtualbox for that client VM. (This was performed at 35:15 on the video)
 </p>
 
