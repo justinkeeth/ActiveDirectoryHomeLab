@@ -212,7 +212,7 @@ Configure Router Option
 
 Right-click Server Options → Configure Options.
 
-Enable 003 Router.
+Enable: 003 Router.
 
 Add IP: 172.16.0.1.
 
@@ -248,11 +248,9 @@ Set network adapter to Internal Network.
 
 Windows 11 Setup (No Internet)
 
-During setup, press Shift + F10.
+During setup, press Shift + F10 (This following command will allow us to bypass the Network Requirement to be Online).
 
-Run:
-
-OOBE\BYPASSNRO
+Run: OOBE\BYPASSNRO
 
 Continue installation offline.
 
@@ -272,9 +270,7 @@ Reboot when prompted.
 
 <h3>Part 12: Verification & Testing</h3>
 
-Run ipconfig on the client:
-
-IPv4 Address should be in 172.16.0.100–200 range.
+Run ipconfig on the client: IPv4 Address should be in 172.16.0.100–200 range.
 
 Open Active Directory Users and Computers.
 
@@ -296,8 +292,9 @@ You now have a functional Active Directory lab with:
 
 - Domain-joined Windows 11 client
 
-This lab closely simulates a real-world enterprise environment and provides hands-on experience with core Windows Server administration tasks.
-
+This lab closely simulates a real-world enterprise environment and provides hands-on experience with core Windows Server administration tasks. </p>
+<p>Also, just wanted to note if you are watching the YouTube video while reading this walk-through guide, I forgot to enable the 003 Router on the DHCP server when I setup the DHCP earlier on the Server VM, so I performed this step at 33:22 time on the video. <br>
+I accidentally disabled the 'cable connected' checkbox on the Virtualbox settings of the Windows 11 Pro VM while the OS was installing. I had to troubleshoot why the ipconfig was showing ethernet disconnected, and solved the issue by enabling Cable Connected within the Network Adapter settings on Virtualbox for that client VM. (This was performed at 35:15 on the video)
 </p>
 
 
