@@ -87,7 +87,7 @@ Project consists of setting up Virtual Home Lab on Windows Server 2025 to run Ac
 - Install VirtualBox Guest Additions and we will manually reboot at the end of Part 4.
 
 <h3>Part 4: Configure Network Settings on the Server</h3>
-Identify Network Adapters
+- Identify Network Adapters
 
 - Open Network Connections.
 
